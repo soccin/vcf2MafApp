@@ -1,10 +1,22 @@
 #!/bin/bash
 
-mkdir vep_data
+mkdir -p rsrc/vep/vep_data
+cd rsrc/vep/vep_data
 
 ROOT=/$(pwd -P | cut -d/ -f2)
 
-singularity pull --name vep-102.sif docker://ensemblorg/ensembl-vep:release_102.0
+#
+# Used by MUSVAR to get MM10 (GRCm38), later version of vep do not seem to
+# have this build of mouse
+#
+#singularity pull --name vep-102.sif docker://ensemblorg/ensembl-vep:release_102.0
+#singularity exec -B $ROOT vep-102.sif INSTALL.pl -c $(pwd -P)/vep_data -a cf -s mus_musculus -y GRCm38
 
-singularity exec -B $ROOT vep-102.sif INSTALL.pl -c $(pwd -P)/vep_data -a cf -s mus_musculus -y GRCm38
+singularity pull --name vep-111.sif docker://ensemblorg/ensembl-vep:release_111.0
+singularity exec -B $ROOT vep-111.sif INSTALL.pl -c $(pwd -P)/vep_data -a cf -s homo_sapiens -y GRCh37
+
+#
+# From the install script:
+# The FASTA file should be automatically detected by the VEP when using --cache or --offline.
+# If it is not, use "--fasta /juno/bic/work/socci/Work/Users/LoweS/HoY/COMPASS/vcf2MafApp/rsrc/vep/vep_data/homo_sapiens/111_GRCh37/Homo_sapiens.GRCh37.75.dna.primary_assembly.fa.gz"
 
