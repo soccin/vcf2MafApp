@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p rsrc/vep/vep_data
-cd rsrc/vep/vep_data
+cd rsrc/vep
 
 ROOT=/$(pwd -P | cut -d/ -f2)
 
