@@ -16,8 +16,8 @@ VEPDATA=$MROOT/vep/vep_data
 
 VCF2MAF=$MROOT/vcf2maf/vcf2maf-1.6.21/vcf2maf.pl
 
-if [ -e $GENOME ]; then
-    source $GENOME
+if [ -e $SDIR/${GENOME}.sh ]; then
+    source $SDIR/${GENOME}.sh
 else
     echo -e "\n   Invalid genome file [$GENOME]\n\n"
     exit
