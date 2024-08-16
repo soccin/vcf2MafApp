@@ -22,8 +22,8 @@ else
     exit
 fi
 
-perl $VCF2MAF \
-    --vep-path $SDIR \
+echo perl $VCF2MAF \
+    --vep-path $SDIR/vep \
     --vep-data $VEPDATA \
     --vep-forks 12  \
     --ref-fasta $FASTA \
